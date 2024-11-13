@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guess My Number</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      #gameForm {
+        width: 50%;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #gameForm label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      #gameForm input[type="text"] {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #gameForm input[type="submit"] {
+        width: 100%;
+        height: 40px;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #gameForm input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+
+      #output {
+        width: 50%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Guess My Number</h1>
+    <form id="gameForm">
+      <label>Guess a number between 1 and 100:</label><br />
+      <input type="text" name="guess" id="guess" /><br />
+      <input type="submit" value="Guess" />
+    </form>
+    <div id="output"></div>
+
+    <script>
+      const form = document.getElementById("gameForm");
+      const output = document.getElementById("output");
+      let numberToGuess = Math.floor(Math.random() * 100) + 1;
+      let attempts = 0;
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const guess = document.getElementById("guess").value;
+        attempts++;
+
+        if (guess < numberToGuess) {
+          output.innerHTML = `Too low! Try again. Attempts: ${attempts}`;
+        } else if (guess > numberToGuess) {
+          output.innerHTML = `Too high! Try again. Attempts: ${attempts}`;
+        } else {
+          output.innerHTML = ` Congratulations! You guessed the number in ${attempts} attempts.`;
+          form.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
